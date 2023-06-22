@@ -77,7 +77,7 @@ Invoke-dpsLight "Spring2023" all-ab-users.txt 2 *>&1 | tee -Append out.txt
 
 This method using a different method which generates different Windows event IDs. It is also much slower.
 
-The command below loops through a list of users and attempts to map the IPC$ share on the domain controller in order to determine if the password is correct or not. If it is correct, it echos a message to the screen and then unmaps/disconnects from the IPC$ share.
+The command below loops through a list of users and attempts to map the IPC$ share on the domain controller in order to determine if the password is correct or not. If it is correct, it prints a message to the screen and then unmaps/disconnects from the IPC$ share.
 
 This example uses a password of `Spring2023` against a list of users called **users.txt** in the current directory.
 
