@@ -15,7 +15,7 @@ $Filter = ""
 $UserSearcher.filter = "(&(objectCategory=person)(objectClass=user)$Filter)"
 $UserSearcher.PageSize = 1000
 
-Write-Host -ForegroundColor Cyan "Searching for all users, that may take several minutes."
+Write-Host -ForegroundColor Cyan "Searching for all users, this may take several minutes."
 $AllUserObjects = $UserSearcher.FindAll()
 Write-Host -ForegroundColor "yellow" ("[*] " + $AllUserObjects.count + " total users found.")
 ```
