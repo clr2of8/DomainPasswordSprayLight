@@ -1,5 +1,6 @@
 # DomainPasswordSprayLight
 
+Kudos to Beau Bullocks [Domain Password Spray script](https://github.com/dafthack/DomainPasswordSpray/blob/master/DomainPasswordSpray.ps1) of which this is a simplification.
 
 ## Gather Domain Usernames
 
